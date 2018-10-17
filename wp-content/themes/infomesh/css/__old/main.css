@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
+
+
+
+body,html{
+
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  background-color: #EAEAEA;
+  background-image: url("assets/background/8.jpg");
+
+}
+h1{
+  font-weight: 100;
+  font-size:4em;
+
+}
+aside {
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* set these so Chrome doesn't return 'auto' from getComputedStyle */
+  width: 200px;
+
+  border: 2px solid rgba(0, 0, 0, 1);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+a{
+  color:black;
+  text-decoration:none;
+}
+
+div {
+
+}
+
+.box_container{
+
+}
+
+.box_link{
+  position:absolute;
+  left:3em;
+  padding:1em;
+  bottom:0;
+
+}
+
+.UIButton{
+  position:absolute;
+
+  width:1em;
+  height:1em;
+  /*padding-right: 1em;
+  padding-top: 1em;*/
+  padding:1em;
+}
+
+.UIButton.Long{
+  width:2em;
+
+}
+
+.UICross{
+  top:0;
+  right:0;
+}
+
+.UIArrow{
+  bottom:0;
+  left:0;
+}
+
+.hidden{
+  visibility:hidden;
+  display:none;
+}
+
+.second {
+	left: 100px;
+	top: 100px;
+}
+.box{
+  position:absolute;
+  border-style: solid;
+  border-width: 1px;
+  width:200px;
+  height:200px;
+  top:100px;
+  background-color: #EAEAEA;
+  background-image: url("assets/background/8.jpg");
+
+  /* set these so Chrome doesn't return 'auto' from getComputedStyle */
+
+  padding:1em;
+  padding-right:2em;
+}
+
+.dot {
+  background-color: #EAEAEA;
+  background-image: url("assets/background/8.jpg");
+  height: 20px;
+  width: 20px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  vertical-align: middle;
+  color: white;
+}
+
+.dot.selected{
+  background-color: #000000;
+
+}
+
+.dot:hover{
+  background-color: #000000;
+}
