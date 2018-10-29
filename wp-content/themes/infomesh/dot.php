@@ -10,9 +10,12 @@ $description = $pod->display("post_content");
 $context = $pod->display("context");
 
 
+
+
 //$description = $pod->display("description");
 $link = $pod->display("link_to_original_content");
 $wikilink = $pod->display("wikipedia_link");
+
 
 
 echo '<div id="idLoaded" idLoaded="'.$id.'">';

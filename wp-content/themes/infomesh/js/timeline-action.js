@@ -25,7 +25,7 @@ $(document).ready(function(){
       //loadDotContent(idToLoad);
       //window.requestAnimationFrame(draw);
       let normalized = map_range(scroll, 0,maxScroll, 0,1);
-      console.log("[scrolling] scroll "+scroll +"  normalized  "+normalized);
+      //console.log("[scrolling] scroll "+scroll +"  normalized  "+normalized);
   });
 
   function getClosestDot(){
@@ -41,18 +41,21 @@ $(document).ready(function(){
     });
     var getClosest = closest(positions,scrollcenter);
     var idToClosest = getClosest.attr("idToLoad");
-    console.log(idToClosest);
+    //console.log(idToClosest);
     let idLoaded = $("#idLoaded").attr("idLoaded");
     if(idLoaded != idToClosest){
       loadDotContent(idToClosest);
+
     }
+    let dot = $(".timeDot[idToLoad='" + idToClosest + "']");
+    goToDot(dot);
 
   }
 
 
   var finishedScrolling = debounce(function() {
       // All the taxing stuff you do
-      console.log("[timeline.js] Finished scrolling !");
+      console.log("[timeline.js] Finished scrolling debounced !");
       getClosestDot();
   }, 250);
 
@@ -80,7 +83,7 @@ $(document).ready(function(){
 
   /*Place the dot on the timeline*/
   function placeDot(dot){
-    console.log("Place dot");
+    //console.log("Place dot");
     let targetLeft = getTargetLeft(dot.attr("startDate"));
 
     let endDate =dot.attr('endDate');
@@ -119,7 +122,7 @@ $(document).ready(function(){
   }
 
   loadDotContent = function(id){
-    console.log("Loading extra content");
+    //console.log("Loading extra content");
     $('#container-main').html("");
     //AJAX request to load content of Dot
     jQuery.post(
@@ -130,13 +133,35 @@ $(document).ready(function(){
         },
         function(response){
                 $('#container-main').html(response);
-                console.log(response);
+                //console.log(response);
         }
     );
   }
 
   /*Align dot in the center of the timeline*/
   function goToDot(dot){
+    let left = dot.position().left;
+    let width = $(window).width()/2;
+    let offset = dot.width()/2;
+    let centerTarget = (left+offset)-width;
+    let scrollDistance = 0;
+    if(centerTarget > scroll){
+      scrollDistance = centerTarget-scroll;
+    }else{
+      scrollDistance = scroll-centerTarget;
+    }
+    $("#container-scrollable").off('scroll', finishedScrolling);
+    $('#container-scrollable').animate({
+      scrollLeft:centerTarget+"px"
+    }, scrollDistance*2, function(){
+
+      console.log("[Finished scrolling animation] centerTarget "+centerTarget +"  scroll "+scroll);
+
+
+      //$("#tl-fixed-description").html(text);
+      $("#container-scrollable").on('scroll', finishedScrolling);
+
+    });
 
   }
 
@@ -150,9 +175,9 @@ $(document).ready(function(){
 
     let width = $(window).width()/2;
     let offset = $(this).width()/2;
-    console.log("[Calculate Scroll] scroll "+scroll+" left "+left+" width "+width+ " offset "+offset);
+    //console.log("[Calculate Scroll] scroll "+scroll+" left "+left+" width "+width+ " offset "+offset);
     let centerTarget = (left+offset)-width;
-    console.log("[Calculate Scroll] scroll centerTarget "+centerTarget);
+    //console.log("[Calculate Scroll] scroll centerTarget "+centerTarget);
 
     //let targetLeft = scroll - ( - ());
     /*$("#container-scrollable").animate({
@@ -171,14 +196,16 @@ $(document).ready(function(){
       scrollLeft:centerTarget+"px"
     }, scrollDistance);*/
     let text = $(this).attr("info");
+    $("#container-scrollable").off('scroll', finishedScrolling);
     $('#container-scrollable').animate({
       scrollLeft:centerTarget+"px"
     }, scrollDistance*2, function(){
 
-      console.log("[Finished scrolling] centerTarget "+centerTarget +"  scroll "+scroll);
+      console.log("[Finished scrolling animation] centerTarget "+centerTarget +"  scroll "+scroll);
 
 
       $("#tl-fixed-description").html(text);
+      $("#container-scrollable").on('scroll', finishedScrolling);
 
     });
 

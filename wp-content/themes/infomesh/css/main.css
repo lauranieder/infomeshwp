@@ -30,10 +30,14 @@ body,html{
 }
 
 #container-main{
-
   height: calc(100vh - 17em);
   overflow-y:scroll;
+}
 
+/*To improve !!!*/
+#container-mainb{
+  height: calc(100vh - 5rem);
+  overflow-y:scroll;
 }
 
 /*Hide this one to hide the timeline*/
@@ -173,6 +177,16 @@ a{
   color:black;
 }
 
+.navigation a{
+
+}
+
+.navigation a:hover{
+  text-decoration: none;
+  border-bottom: 2px solid black;
+  transition: opacity 3s;
+}
+
 ul{
   /*float:left;*/
 }
@@ -217,6 +231,20 @@ select{
 .UIButton_2x{
   width:2rem;
   height:2rem;
+}
+
+.UIButton_long{
+  width:2rem;
+  height:1rem;
+  margin-top:0.5rem;
+  margin-right:0.5rem;
+}
+
+.UIButton_long_2x{
+  width:4rem;
+  height:2rem;
+  margin-top:1rem;
+  margin-right:1rem;
 }
 
 .fakeImg{
@@ -268,7 +296,7 @@ select{
   top:1rem;
   box-sizing: border-box;
   height:3rem;
-  width:10px;
+  width:1rem;
   border: 1px solid rgba(0, 0, 0, 1);
   background: black;
 }
@@ -276,11 +304,14 @@ select{
   background: url("UI/UIPattern.png");
 }
 #centerTime{
-  position:absolute;
-  left: 50%;
-  border: 0.5px solid rgba(0, 0, 0, 1);
-  height: 100%;
-  width:0px;
+  /*position:absolute;
+  left: 50%;*/
+  margin:auto;
+  align:center;
+  /*border: 0.5px solid rgba(0, 0, 0, 1);*/
+  height:3rem;
+  width:1rem;
+  background-color: green;
 }
 #tl-fixed-description{
 }
