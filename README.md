@@ -32,6 +32,14 @@ Therefore if you need to load external script and stylesheet, it is a bit differ
     wp_enqueue_style( 'example-style', get_template_directory_uri()."/studentprojectexample/css/example-style.css");
   }
 ```
+Go to the wordpress console --> *http://infomesh.ecal-mid.ch/wp-login.php*
+
+Go to pages --> ajouter.
+
+It should look like this.
+
+![Image of wordpress console](http://infomesh.ecal-mid.ch/wp-content/uploads/2018/10/Capture-d’écran-2018-10-28-à-21.28.42.png)
+
 
 
 
