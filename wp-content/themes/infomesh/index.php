@@ -99,11 +99,11 @@ if ( $pod->total() > 0 ) {
     <div class="third-p col-12"><div id=centerTime></div></div>
     <div class="third-p col-12"></div>
     <div class="third-p col-12">
-      <img class="UIButton abs-left" src="<?php echo get_template_directory_uri(); ?>/css/UI/UILeftArrow.png" alt="<">
+      <img id="button_LeftArrow" class="UIButton abs-left" src="<?php echo get_template_directory_uri(); ?>/css/UI/UILeftArrow.png" alt="<">
       <!--<div class="col-1"></div>-->
       <!--<div class="col-1 text-normal"><span>1999</br>19 years ago</span></div>-->
       <div id="tl-fixed-description" class="text-normal center txt-center"><span>Publication of the Declaration of the Independence of Cyberspace.</span></div>
-      <img class="UIButton abs-right" src="<?php echo get_template_directory_uri(); ?>/css/UI/UIRightArrow.png" alt=">">
+      <img id="button_RightArrow" class="UIButton abs-right" src="<?php echo get_template_directory_uri(); ?>/css/UI/UIRightArrow.png" alt=">">
 
     </div>
   </div>

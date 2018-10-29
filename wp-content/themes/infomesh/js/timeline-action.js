@@ -1,6 +1,9 @@
+/*-------------DO NOT MODIFY-----------
+You can add script under js/proposals/ and link it to a template. */
 $(document).ready(function(){
 
   let scroll = 0;
+  let scrollcenter = 0;
   let maxScroll;
   init();
   function init(){
@@ -18,10 +21,56 @@ $(document).ready(function(){
   }
   $("#container-scrollable").scroll(function (event) {
       scroll = $("#container-scrollable").scrollLeft();
+
+      //loadDotContent(idToLoad);
       //window.requestAnimationFrame(draw);
       let normalized = map_range(scroll, 0,maxScroll, 0,1);
-      //console.log("[scrolling] scroll "+scroll +"  normalized  "+normalized);
+      console.log("[scrolling] scroll "+scroll +"  normalized  "+normalized);
   });
+
+  function getClosestDot(){
+
+
+    scrollcenter = $("#container-scrollable").scrollLeft() + ($("#container-scrollable").width() / 2);
+
+
+    var positions = [];
+    $('.timeDot').each(function(){
+        //$(this).removeClass("active");
+        positions.push({position:$(this).position().left, element: $(this)});
+    });
+    var getClosest = closest(positions,scrollcenter);
+    var idToClosest = getClosest.attr("idToLoad");
+    console.log(idToClosest);
+    let idLoaded = $("#idLoaded").attr("idLoaded");
+    if(idLoaded != idToClosest){
+      loadDotContent(idToClosest);
+    }
+
+  }
+
+
+  var finishedScrolling = debounce(function() {
+      // All the taxing stuff you do
+      console.log("[timeline.js] Finished scrolling !");
+      getClosestDot();
+  }, 250);
+
+  $("#container-scrollable").on('scroll', finishedScrolling);
+
+
+
+
+    // finds the nearest position (from an array of objects) to the specified number
+    function closest(array, number) {
+        var num = 0;
+        for (var i = array.length - 1; i >= 0; i--) {
+            if(Math.abs(number - array[i].position) < Math.abs(number - array[num].position)){
+                num = i;
+            }
+        }
+        return array[num].element;
+    }
 
   function draw() {
 
@@ -159,6 +208,17 @@ $(document).ready(function(){
 
   });
 
+  $(document).on('click','#button_LeftArrow', function() {
+    console.log("[timeline.js] clicked on left arrow");
+  });
+
+  $(document).on('click','#button_RightArrow', function() {
+    console.log("[timeline.js] clicked on right arrow");
+  });
+
+
+
+
   /*Show info on hover*/
   $(document).on({
     mouseenter: function () {
@@ -189,5 +249,20 @@ $(document).ready(function(){
   function map_range(value, low1, high1, low2, high2) {
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
   }
+
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
 
 });

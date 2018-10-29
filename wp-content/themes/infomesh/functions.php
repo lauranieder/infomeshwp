@@ -26,6 +26,9 @@ function blankslate_load_scripts()
   wp_enqueue_script( 'menu-action', get_template_directory_uri()."/js/menu-action.js", array('jquery'));
   wp_enqueue_script( 'moment', get_template_directory_uri()."/js/moment-2.22.2.js");
 
+  //check why is Page template is not working
+  wp_enqueue_script( 'project-action', get_template_directory_uri()."/js/project-action.js", array('jquery'));
+
   wp_localize_script('timeline-action', 'ajaxurl', admin_url( 'admin-ajax.php' ));
 
   //style
@@ -33,6 +36,30 @@ function blankslate_load_scripts()
   wp_enqueue_style( 'grid', get_template_directory_uri()."/css/grid.css");
   wp_enqueue_style( 'main', get_template_directory_uri()."/css/main.css");
   wp_enqueue_style( 'jquerystyle','http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css');
+
+
+
+  if (is_page_template('page-proposals.php')) {
+    wp_enqueue_script( 'project-action', get_template_directory_uri()."/js/project-action.js", array('jquery'));
+    wp_localize_script('project-action', 'ajaxurl', admin_url( 'admin-ajax.php' ));
+  }
+
+  if (is_page_template('page-cursors.php')) {
+    wp_enqueue_script( 'cursors-action', get_template_directory_uri()."/js/proposals/cursors-action.js", array('jquery'));
+    wp_enqueue_style( 'cursors-style', get_template_directory_uri()."/css/proposals/cursors-style.css");
+
+  }
+
+  if (is_page_template('studentprojectexample/page-studentprojectexample.php')) {
+    wp_enqueue_script( 'example-action', get_template_directory_uri()."/studentprojectexample/js/example-action.js", array('jquery'));
+    wp_enqueue_style( 'example-style', get_template_directory_uri()."/studentprojectexample/css/example-style.css");
+
+  }
+
+  if (is_page_template('studentprojectexample-canvas/page-studentprojectexamplecanvas.php')) {
+    wp_enqueue_script( 'example-action', get_template_directory_uri()."/studentprojectexample-canvas/js/examplecanvas-action.js", array('jquery'));
+    wp_enqueue_style( 'example-style', get_template_directory_uri()."/studentprojectexample-canvas/css/examplecanvas-style.css");
+  }
 }
 
 add_action( 'wp_ajax_timeline_loadDot', 'timeline_loadDot' );
@@ -58,6 +85,37 @@ function timeline_loadDot() {
     while ($pod->fetch() ) {
       //$lat = $pod->display("latitude");
       include(locate_template('dot.php'));
+      //get_template_part( 'oeuvre' );
+    }
+  }else{
+    var_dump($pod->total());
+  }
+	die();
+}
+
+add_action( 'wp_ajax_proposal_loadProposal', 'proposal_loadProposal' );
+add_action( 'wp_ajax_nopriv_proposal_loadProposal', 'proposal_loadProposal' );
+function proposal_loadProposal(){
+
+  $keyword = $_POST['keyword'];
+  //$keyword ='bevaix-chapelle-catholique';
+  //$keyword ='moulins-de-courtaney';
+  $params = array(
+    'limit' => 1,
+    //'orderby' => 'end.meta_value DESC',
+    //'where' => "t.slug =".$keyword,
+    'where' => "t.id =".$keyword,
+    //'where' => "t.slug ='moulins-de-courtaney'"
+  );
+  $pod = pods('proposal', $params);
+
+  /*$pod = pods('oeuvre', $keyword);*/
+  // Si plus d'un résultat, boucle sur le pod
+  if ( $pod->total() > 0 ) {
+    $i = 0;
+    while ($pod->fetch() ) {
+      //$lat = $pod->display("latitude");
+      include(locate_template('proposal.php'));
       //get_template_part( 'oeuvre' );
     }
   }else{

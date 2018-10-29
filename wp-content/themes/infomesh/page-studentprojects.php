@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Page projects */
+/* Template Name: Page studentprojects */
 get_header(); ?>
 
 

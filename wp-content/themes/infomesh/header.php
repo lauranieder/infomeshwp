@@ -9,15 +9,22 @@
 <body <?php body_class(); ?>>
 <div id="wrapper" class="hfeed">
 <header id="header" role="banner">
-<section id="branding">
-<div id="site-title"><?php if ( is_front_page() || is_home() || is_front_page() && is_home() ) { echo '<h1>'; } ?><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a><?php if ( is_front_page() || is_home() || is_front_page() && is_home() ) { echo '</h1>'; } ?></div>
-<div id="site-description"><?php //bloginfo( 'description' ); ?></div>
-</section>
-<nav id="menu" role="navigation">
-<div id="search">
-<?php //get_search_form(); ?>
-</div>
-<?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>
-</nav>
+  <div class="col-12 text-normal">
+
+    <img id="menuOpen" class="UIButton_2x abs-right"  src="<?php echo get_template_directory_uri(); ?>/css/UI/UIMenu.png" alt="Menu">
+    <img id="menuClose" class="UIButton_2x abs-right hidden"  src="<?php echo get_template_directory_uri(); ?>/css/UI/UICross.png" alt="X">
+    <div id="site-title" class="menuItem">
+      <h1>
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
+      </h1>
+    </div>
+    <div class="menuItem">/</div>
+    <div class="menuItem">
+      <nav id="menu" role="navigation">
+        <?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>
+        <?php //wp_nav_menu( array( 'theme_location' => 'MenuComplexe' ) ); ?>
+      </nav>
+    </div>
+  </div>
 </header>
 <div id="container">
