@@ -12,7 +12,7 @@ Everything that you will create/add/modify has to be in this folder. **Do not mo
 
 The only exception is a file called *functions.php.*
 
-### How to use the wordpress template system
+### How to use the wordpress template system -- Code
 
 There is an example project called *studentprojectexample*. Open the template *page-studentprojectexample.php*.
 For wordpress to automatically recognize your file as a template you must name it *page-* and keep this line at the beginning of the code. 
@@ -32,6 +32,8 @@ Therefore if you need to load external script and stylesheet, it is a bit differ
     wp_enqueue_style( 'example-style', get_template_directory_uri()."/studentprojectexample/css/example-style.css");
   }
 ```
+### How to use the wordpress template system -- Wordpress console
+
 Go to the wordpress console --> *http://infomesh.ecal-mid.ch/wp-login.php*
 
 Go to pages --> ajouter.
