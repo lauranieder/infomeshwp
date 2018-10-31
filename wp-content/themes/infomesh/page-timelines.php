@@ -61,10 +61,10 @@ get_header(); ?>
         <div class=col-t-6></div>
       </div>
 <?php
-$params = array(
-  'orderby' => 'startdate',
-  'limit' => 0
-);
+  $params = array(
+    'orderby' => 'startdate',
+    'limit' => 0
+  );
 $pod = pods('dot', $params);
 if ( $pod->total() > 0 ) {
       echo '<div id=containertimeline-content class="timeline-subcontainer">';

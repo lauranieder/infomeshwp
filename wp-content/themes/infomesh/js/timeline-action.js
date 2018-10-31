@@ -72,6 +72,7 @@ $(document).ready(function(){
                 num = i;
             }
         }
+        console.log(number - array[num].position);
         return array[num].element;
     }
 
