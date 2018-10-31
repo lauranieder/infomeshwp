@@ -1,6 +1,30 @@
 # Infomesh
 http://infomesh.ecal-mid.ch/
 
+### Connect to ftp / ecal-mid.ch
+I use Atom with a plugin called remote ftp. https://atom.io/packages/remote-ftp
+
+It might also exist an equivalent for sublime text. 
+
+You create a file called *.ftpconfig*
+```javascript
+{
+    "protocol": "ftp",
+    "host": "epka.ftp.infomaniak.com",
+    "port": 21,
+    "user": "YourID",
+    "pass": "YourPass",
+    "promptForPass": false,
+    "remote": "/",
+    "secure": false,
+    "secureOptions": null,
+    "connTimeout": 10000,
+    "keepalive": 10000,
+    "watch":[""],
+    "watchTimeout":500
+}
+```
+
 ### Keep things organized !
 We will only modify the wordpress theme called infomesh. 
 
